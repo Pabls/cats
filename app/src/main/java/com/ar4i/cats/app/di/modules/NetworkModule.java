@@ -1,5 +1,6 @@
 package com.ar4i.cats.app.di.modules;
 
+import com.ar4i.cats.data.network.Api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -15,11 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    private String baseUrl;
-
-    public NetworkModule(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
+    private String baseUrl = "https://api.thecatapi.com/v1";
 
     @Provides
     @Singleton
@@ -42,5 +39,11 @@ public class NetworkModule {
                 .client(httpClient)
                 .baseUrl(baseUrl)
                 .build();
+    }
+
+    @Provides
+    @Singleton
+    Api provideApi(Retrofit retrofit) {
+        return retrofit.create(Api.class);
     }
 }

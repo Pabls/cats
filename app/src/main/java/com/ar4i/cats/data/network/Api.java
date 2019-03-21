@@ -1,5 +1,11 @@
 package com.ar4i.cats.data.network;
 
+import com.ar4i.cats.data.network.response.Breed;
+import com.ar4i.cats.data.network.response.Category;
+import com.ar4i.cats.data.network.response.DataChangeResponse;
+import com.ar4i.cats.data.network.response.FullData;
+import com.ar4i.cats.data.network.response.Vote;
+
 import java.util.List;
 
 import io.reactivex.Single;
@@ -14,60 +20,82 @@ public interface Api {
 
     //==========================================start Breeds========================================
 
+    /**
+     * https://api.thecatapi.com/v1/breeds
+     */
     @GET("/breeds")
-    Single<List<Object>> getBreeds();
+    Single<List<Breed>> getBreeds();
 
+    /**
+     * https://api.thecatapi.com/v1/breeds?q=sib
+     */
     @GET("/breeds/search")
-    Single<List<Object>>  getBreedsByName(@Query("q") String name);
+    Single<List<Breed>>  getBreedsByName(@Query("q") String name);
 
     //-------------------------------------------end Breeds-----------------------------------------
 
 
     //==========================================start Categories====================================
 
+    /**
+     * https://api.thecatapi.com/v1/categories
+     */
     @GET("/categories")
-    Single<List<Object>>  getCategories();
+    Single<List<Category>>  getCategories();
 
     //-------------------------------------------end Categories-------------------------------------
 
 
     //==========================================start Images========================================
 
+    /**
+     * https://api.thecatapi.com/v1/images/search?size=small&mime-types=png&format=json&limit=1&breed_id=bsho
+     */
     @GET("/images/search")
-    Single<List<Object>>  getImages(@Query("size") String size,
-                             @Query("mime-types") String mimeType,
-                             @Query("order") String order,
-                             @Query("limit") int limit,
-                             @Query("category_ids") List<Integer> categoryIds,
-                             @Query("format") String format,
-                             @Query("breed_id") String breedsIds);
+    Single<List<FullData>>  getImages(@Query("size") String size,
+                                      @Query("mime-types") String mimeType,
+                                      @Query("order") String order,
+                                      @Query("limit") int limit,
+                                      @Query("category_ids") List<Integer> categoryIds,
+                                      @Query("format") String format,
+                                      @Query("breed_id") String breedsIds);
 
-    @POST("/images")
-    Single<Object> getImageById(@Path("image_id") String imageId);
+
+    /**
+     * https://api.thecatapi.com/v1/images/GrPErz7EA
+     */
+    @GET("/images")
+    Single<FullData> getImageById(@Path("image_id") String imageId);
 
     @POST("/images/upload")
-    Single<Object> uploadImage(@Body() Object img);
+    Single<DataChangeResponse> uploadImage(@Body() Object img);
 
     @POST("/images")
-    Single<Object> deleteImageById(@Path("image_id") String imageId);
+    Single<DataChangeResponse> deleteImageById(@Path("image_id") String imageId);
 
     //-------------------------------------------end Images-----------------------------------------
 
 
     //==========================================start Votes=========================================
 
+    /**
+     * https://api.thecatapi.com/v1/votes
+     */
     @GET("/votes")
-    Single<List<Object>>  getVotes();
+    Single<List<Vote>>  getVotes();
 
+    /**
+     * https://api.thecatapi.com/v1/votes/31098
+     */
     @GET("/votes")
-    Single<Object> getVoteById(@Path("id") String voteId);
+    Single<Vote> getVoteById(@Path("id") String voteId);
 
 
     @POST("/votes")
-    Single<Object> createVotes(@Body() Object vote);
+    Single<DataChangeResponse> createVotes(@Body() Object vote);
 
     @DELETE("/votes")
-    Single<Object> deleteVoteById(@Path("id") String voteId);
+    Single<DataChangeResponse> deleteVoteById(@Path("id") String voteId);
 
     //-------------------------------------------end Votes------------------------------------------
 }

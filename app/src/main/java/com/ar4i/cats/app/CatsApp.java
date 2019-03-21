@@ -22,7 +22,7 @@ public class CatsApp extends Application {
     private void createComponent() {
         applicationComponent = DaggerApplicationComponent
                 .builder()
-                .networkModule(new NetworkModule(""))
+                .networkModule(new NetworkModule())
                 .build();
     }
 }
