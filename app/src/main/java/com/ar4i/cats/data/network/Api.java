@@ -18,19 +18,21 @@ import retrofit2.http.Query;
 
 public interface Api {
 
+    static String VERSION = "v1";
+
     //==========================================start Breeds========================================
 
     /**
      * https://api.thecatapi.com/v1/breeds
      */
-    @GET("/breeds")
+    @GET(VERSION + "/breeds")
     Single<List<Breed>> getBreeds();
 
     /**
      * https://api.thecatapi.com/v1/breeds?q=sib
      */
-    @GET("/breeds/search")
-    Single<List<Breed>>  getBreedsByName(@Query("q") String name);
+    @GET(VERSION + "/breeds/search")
+    Single<List<Breed>> getBreedsByName(@Query("q") String name);
 
     //-------------------------------------------end Breeds-----------------------------------------
 
@@ -40,8 +42,8 @@ public interface Api {
     /**
      * https://api.thecatapi.com/v1/categories
      */
-    @GET("/categories")
-    Single<List<Category>>  getCategories();
+    @GET(VERSION + "/categories")
+    Single<List<Category>> getCategories();
 
     //-------------------------------------------end Categories-------------------------------------
 
@@ -51,26 +53,26 @@ public interface Api {
     /**
      * https://api.thecatapi.com/v1/images/search?size=small&mime-types=png&format=json&limit=1&breed_id=bsho
      */
-    @GET("/images/search")
-    Single<List<FullData>>  getImages(@Query("size") String size,
-                                      @Query("mime-types") String mimeType,
-                                      @Query("order") String order,
-                                      @Query("limit") int limit,
-                                      @Query("category_ids") List<Integer> categoryIds,
-                                      @Query("format") String format,
-                                      @Query("breed_id") String breedsIds);
+    @GET(VERSION + "/images/search")
+    Single<List<FullData>> getImages(@Query("size") String size,
+                                     @Query("mime-types") String mimeType,
+                                     @Query("order") String order,
+                                     @Query("limit") int limit,
+                                     @Query("category_ids") List<Integer> categoryIds,
+                                     @Query("format") String format,
+                                     @Query("breed_id") String breedsIds);
 
 
     /**
      * https://api.thecatapi.com/v1/images/GrPErz7EA
      */
-    @GET("/images")
+    @GET(VERSION + "/images")
     Single<FullData> getImageById(@Path("image_id") String imageId);
 
-    @POST("/images/upload")
+    @POST(VERSION + "/images/upload")
     Single<DataChangeResponse> uploadImage(@Body() Object img);
 
-    @POST("/images")
+    @POST(VERSION + "/images")
     Single<DataChangeResponse> deleteImageById(@Path("image_id") String imageId);
 
     //-------------------------------------------end Images-----------------------------------------
@@ -81,20 +83,20 @@ public interface Api {
     /**
      * https://api.thecatapi.com/v1/votes
      */
-    @GET("/votes")
-    Single<List<Vote>>  getVotes();
+    @GET(VERSION + "/votes")
+    Single<List<Vote>> getVotes();
 
     /**
      * https://api.thecatapi.com/v1/votes/31098
      */
-    @GET("/votes")
+    @GET(VERSION + "/votes")
     Single<Vote> getVoteById(@Path("id") String voteId);
 
 
-    @POST("/votes")
+    @POST(VERSION + "/votes")
     Single<DataChangeResponse> createVotes(@Body() Object vote);
 
-    @DELETE("/votes")
+    @DELETE(VERSION + "/votes")
     Single<DataChangeResponse> deleteVoteById(@Path("id") String voteId);
 
     //-------------------------------------------end Votes------------------------------------------

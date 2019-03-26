@@ -1,6 +1,8 @@
 package com.ar4i.cats.app.di.modules;
 
 import com.ar4i.cats.data.network.Api;
+import com.ar4i.cats.data.network.interceptors.TokenInterceptor;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -16,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    private String baseUrl = "https://api.thecatapi.com/v1";
+    private String baseUrl = "https://api.thecatapi.com/";
 
     @Provides
     @Singleton
@@ -27,7 +29,10 @@ public class NetworkModule {
     @Provides
     @Singleton
     OkHttpClient provideOkHttpClient() {
-        return new OkHttpClient.Builder().build();
+        return new OkHttpClient.Builder()
+                .addInterceptor(new StethoInterceptor())
+                .addNetworkInterceptor(new TokenInterceptor())
+                .build();
     }
 
     @Provides

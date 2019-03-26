@@ -19,8 +19,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
 
         setContentView(getLayoutId());
 
-        createPresenter();
-
         ButterKnife.bind(this);
 
         getPresenter().attachView(this);
@@ -44,8 +42,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     //-------------------------------------------end -----------------------------------------------
 
     //==========================================start ABSTRACT METHODS==============================
-
-    protected abstract void createPresenter();
 
     protected abstract BasePresenter<MvpView> getPresenter();
 
