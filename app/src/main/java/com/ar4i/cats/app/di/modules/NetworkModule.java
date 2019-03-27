@@ -27,11 +27,21 @@ public class NetworkModule {
     }
 
     @Provides
+    StethoInterceptor provideStethoInterceptor() {
+        return new StethoInterceptor();
+    }
+
+    @Provides
+    TokenInterceptor provideTokenInterceptor() {
+        return new TokenInterceptor();
+    }
+
+    @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient() {
+    OkHttpClient provideOkHttpClient(StethoInterceptor stethoInterceptor, TokenInterceptor tokenInterceptor) {
         return new OkHttpClient.Builder()
-                .addInterceptor(new StethoInterceptor())
-                .addNetworkInterceptor(new TokenInterceptor())
+                .addInterceptor(stethoInterceptor)
+                .addNetworkInterceptor(tokenInterceptor)
                 .build();
     }
 

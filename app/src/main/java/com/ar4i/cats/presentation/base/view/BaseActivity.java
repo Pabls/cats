@@ -3,6 +3,8 @@ package com.ar4i.cats.presentation.base.view;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.ar4i.cats.app.CatsApp;
+import com.ar4i.cats.app.di.components.ApplicationComponent;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
 
 import androidx.annotation.Nullable;
@@ -41,11 +43,21 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
 
     //-------------------------------------------end -----------------------------------------------
 
+    //==========================================start PROTECTED METHODS=============================
+
+    protected ApplicationComponent getComponent() {
+        return CatsApp.getApplicationComponent();
+    }
+
+    //-------------------------------------------end PROTECTED METHODS------------------------------
+
     //==========================================start ABSTRACT METHODS==============================
 
     protected abstract BasePresenter<MvpView> getPresenter();
 
     protected abstract int getLayoutId();
+
+    protected abstract void inject();
 
     //-------------------------------------------end ABSTRACT METHODS-------------------------------
 

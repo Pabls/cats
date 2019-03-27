@@ -16,5 +16,5 @@ import dagger.Component;
         RepositoriesModule.class,
 })
 public interface ApplicationComponent {
-    void inject(SplashActivity splashActivity);
+    void inject(SplashActivity activity);
 }

@@ -42,5 +42,10 @@ public class SplashActivity extends BaseActivity implements SplashView {
         return R.layout.activity_splash;
     }
 
+    @Override
+    protected void inject() {
+        getComponent().inject(this);
+    }
+
     //-------------------------------------------end extends BaseActivity---------------------------
 }
