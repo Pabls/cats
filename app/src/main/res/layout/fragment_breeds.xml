@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/sp_breeds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sp_breeds"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/img_photo"
+            app:layout_constraintTop_toBottomOf="@+id/sp_breeds" />
+
+        <TextView
+            android:id="@+id/tv_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/breeds_fragment.text.country"
+            android:textSize="@dimen/breeds_fragment.specification_size"
+            app:layout_constraintEnd_toStartOf="@+id/img_country_flag"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <ImageView
+            android:id="@+id/img_country_flag"
+            android:layout_width="@dimen/breeds_fragment.country_flag_img.size"
+            android:layout_height="@dimen/breeds_fragment.country_flag_img.size"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/margin_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_weight_label"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/tv_affection_level"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.affection_level"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/tv_adaptability"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.adaptability"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_affection_level" />
+
+        <TextView
+            android:id="@+id/tv_health"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.health"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_grooming" />
+
+        <TextView
+            android:id="@+id/tv_energy_level"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.energy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dog_friendly" />
+
+        <TextView
+            android:id="@+id/tv_dog_friendly"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.dog_friendly"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_child_friendly" />
+
+        <TextView
+            android:id="@+id/tv_vocalisation"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:text="@string/breeds_fragment.text.vocalisation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_friendly" />
+
+        <TextView
+            android:id="@+id/tv_grooming"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.grooming"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_energy_level" />
+
+        <TextView
+            android:id="@+id/tv_child_friendly"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.child_friendly"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_adaptability" />
+
+        <TextView
+            android:id="@+id/tv_friendly"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.friendly"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_social_needs" />
+
+        <TextView
+            android:id="@+id/tv_social_needs"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.social_needs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_shedding_level" />
+
+        <TextView
+            android:id="@+id/tv_shedding_level"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.shedding_level"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_intelligence" />
+
+        <TextView
+            android:id="@+id/tv_intelligence"
+            style="@style/AppTheme.Breeds.SpecificationsText"
+            android:text="@string/breeds_fragment.text.intelligence"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_health" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/divider.height"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+        <RatingBar
+            android:id="@+id/rb_affection_lvl"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_affection_level"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_affection_level" />
+
+        <RatingBar
+            android:id="@+id/rb_adaptability"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_adaptability"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_adaptability" />
+
+        <RatingBar
+            android:id="@+id/rb_vocalisation"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_vocalisation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_vocalisation" />
+
+        <RatingBar
+            android:id="@+id/rb_stranger_friendly"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_friendly"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_friendly" />
+
+        <RatingBar
+            android:id="@+id/rb_social_needs"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_social_needs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_social_needs" />
+
+        <RatingBar
+            android:id="@+id/rb_shedding_lvl"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_shedding_level"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_shedding_level" />
+
+        <RatingBar
+            android:id="@+id/rb_energy_lvl"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_energy_level"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_energy_level" />
+
+        <RatingBar
+            android:id="@+id/rb_grooming"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_grooming"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_grooming" />
+
+        <RatingBar
+            android:id="@+id/rb_health_issues"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_health"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_health" />
+
+        <RatingBar
+            android:id="@+id/rb_intelligence"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_intelligence"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_intelligence" />
+
+        <RatingBar
+            android:id="@+id/rb_child_friendly"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_child_friendly"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_child_friendly" />
+
+        <RatingBar
+            android:id="@+id/rb_dog_friendly"
+            style="@style/AppTheme.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_dog_friendly"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_dog_friendly" />
+
+        <TextView
+            android:id="@+id/tv_life_span_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/breeds_fragment.text.life_span"
+            app:layout_constraintEnd_toStartOf="@+id/tv_life_span"
+            app:layout_constraintTop_toBottomOf="@+id/tv_country" />
+
+        <TextView
+            android:id="@+id/tv_life_span"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="12-16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_country" />
+
+        <TextView
+            android:id="@+id/tv_weight_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/breeds_fragment.text.weigth"
+            app:layout_constraintEnd_toStartOf="@+id/tv_weight"
+            app:layout_constraintTop_toBottomOf="@+id/tv_life_span_label" />
+
+        <TextView
+            android:id="@+id/tv_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="12-13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_life_span_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

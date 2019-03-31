@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_bottom_navigation_breeds"
+        android:title="@string/bottom_nav_bar.breeds"></item>
+    <item
+        android:id="@+id/action_bottom_navigation_categories"
+        android:title="@string/bottom_nav_bar.categories"></item>
+    <item
+        android:id="@+id/action_bottom_navigation_favorites"
+        android:title="@string/bottom_nav_bar.favorites"></item>
+
+</menu>

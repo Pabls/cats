@@ -1,10 +1,30 @@
 <resources>
-    <string name="app_name">Кото-Фото</string>
+    <string name="app_name">Photo-Cat</string>
 
     <string name="start_activity.text.footer">
-        Приложение работает с сервисом «The Cat API» \n https://thecatapi.com
+        The application works with the service «The Cat API» \n https://thecatapi.com
     </string>
-    <string name="start_activity.text.img_content_discription">Тут должно быть фото котика</string>
-    <string name="start_activity.text.app_name.first_half">КОТО</string>
-    <string name="start_activity.text.app_name.second_half">ФОТО</string>
+    <string name="start_activity.text.img_content_discription">Photo-Cat</string>
+    <string name="start_activity.text.app_name.first_half">PHOTO</string>
+    <string name="start_activity.text.app_name.second_half">CAT</string>
+
+    <string name="bottom_nav_bar.breeds">Breeds</string>
+    <string name="bottom_nav_bar.categories">Categories</string>
+    <string name="bottom_nav_bar.favorites">Favorite</string>
+
+    <string name="breeds_fragment.text.country">Country :</string>
+    <string name="breeds_fragment.text.affection_level">Affection level</string>
+    <string name="breeds_fragment.text.adaptability">Adaptability</string>
+    <string name="breeds_fragment.text.child_friendly">Child friendly</string>
+    <string name="breeds_fragment.text.dog_friendly">Dog friendly</string>
+    <string name="breeds_fragment.text.energy">Energy level</string>
+    <string name="breeds_fragment.text.grooming">Grooming</string>
+    <string name="breeds_fragment.text.health">Health issues</string>
+    <string name="breeds_fragment.text.intelligence">Intelligence</string>
+    <string name="breeds_fragment.text.shedding_level">Shedding level</string>
+    <string name="breeds_fragment.text.social_needs">Social needs</string>
+    <string name="breeds_fragment.text.friendly">Stranger friendly</string>
+    <string name="breeds_fragment.text.vocalisation">Vocalisation</string>
+    <string name="breeds_fragment.text.life_span">Life span :</string>
+    <string name="breeds_fragment.text.weigth">Weight :</string>
 </resources>
