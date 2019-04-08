@@ -1,4 +1,4 @@
-package com.ar4i.cats.presentation.breeds;
+package com.ar4i.cats.presentation.breeds.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

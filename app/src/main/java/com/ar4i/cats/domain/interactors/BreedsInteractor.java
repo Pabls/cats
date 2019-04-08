@@ -2,13 +2,13 @@ package com.ar4i.cats.domain.interactors;
 
 import com.ar4i.cats.data.repositories.breeds.IBreedsRepository;
 import com.ar4i.cats.domain.mappers.IMapper;
-import com.ar4i.cats.domain.models.ShortenedBreedModel;
+import com.ar4i.cats.domain.models.BreedModel;
 
 import java.util.List;
 
 import io.reactivex.Single;
 
-public class BreedsInteractor {
+public class BreedsInteractor implements IBreedsInteractor {
 
     //==========================================start Fields========================================
 
@@ -24,7 +24,8 @@ public class BreedsInteractor {
 
     //==========================================start Public methods================================
 
-    Single<List<ShortenedBreedModel>> getBreedNames() {
+    @Override
+    public Single<List<BreedModel>> getBreedNames() {
         return iBreedsRepository.getBreeds().map(breeds -> iMapper.mapToViewModel(breeds));
     }
 

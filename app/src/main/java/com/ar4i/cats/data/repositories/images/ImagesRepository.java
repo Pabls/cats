@@ -11,6 +11,4 @@ public class ImagesRepository implements IImagesRepository {
     private Api api;
 
     //-------------------------------------------end FIELDS-----------------------------------------
-
-
 }

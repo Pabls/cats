@@ -32,11 +32,8 @@ public class SplashActivity extends BaseActivity implements SplashView {
 
     //==========================================start extends BaseActivity==========================
 
-    @SuppressWarnings("unchecked")
     @Override
-    protected BasePresenter getPresenter() {
-        return this.splashPresenter;
-    }
+    protected BasePresenter getPresenter() { return splashPresenter; }
 
     @Override
     protected int getLayoutId() {

@@ -7,7 +7,9 @@ import android.os.Bundle;
 import com.ar4i.cats.R;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
 import com.ar4i.cats.presentation.base.view.BaseActivity;
-import com.ar4i.cats.presentation.breeds.BreedsFragment;
+import com.ar4i.cats.presentation.breeds.view.BreedsFragment;
+import com.ar4i.cats.presentation.categories.view.CategoriesFragment;
+import com.ar4i.cats.presentation.favorite.view.FavoriteFragment;
 import com.ar4i.cats.presentation.main.presenter.MainPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -78,8 +80,6 @@ public class MainActivity extends BaseActivity implements MainView {
 
     //-------------------------------------------end extends BaseActivity---------------------------
 
-
-
     // region========================================PRIVATE METHODS================================
 
     private void initNavigation() {
@@ -90,10 +90,10 @@ public class MainActivity extends BaseActivity implements MainView {
                         showFragment(BreedsFragment.newInstance());
                         break;
                     case R.id.action_bottom_navigation_categories:
-                        //showFragment(FavoriteFragment.newInstance());
+                        showFragment(CategoriesFragment.newInstance());
                         break;
                     case R.id.action_bottom_navigation_favorites:
-                        //showFragment(HistoryFragment.newInstance());
+                        showFragment(FavoriteFragment.newInstance());
                         break;
                     default:
                         break;

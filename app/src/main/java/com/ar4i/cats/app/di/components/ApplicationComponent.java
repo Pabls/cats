@@ -1,5 +1,7 @@
 package com.ar4i.cats.app.di.components;
 
+import com.ar4i.cats.app.CatsApp;
+import com.ar4i.cats.app.di.modules.InteractorsModule;
 import com.ar4i.cats.app.di.modules.NetworkModule;
 import com.ar4i.cats.app.di.modules.PresentationModule;
 import com.ar4i.cats.app.di.modules.RepositoriesModule;
@@ -11,6 +13,7 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
+        InteractorsModule.class,
         NetworkModule.class,
         PresentationModule.class,
         RepositoriesModule.class,
