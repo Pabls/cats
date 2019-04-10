@@ -1,8 +1,8 @@
-package com.ar4i.cats.domain.interactors;
+package com.ar4i.cats.domain.interactors.breeds;
 
+import com.ar4i.cats.data.network.response.Breed;
 import com.ar4i.cats.data.repositories.breeds.IBreedsRepository;
-import com.ar4i.cats.domain.mappers.IMapper;
-import com.ar4i.cats.domain.models.BreedModel;
+import com.ar4i.cats.data.models.PartialBreedModel;
 
 import java.util.List;
 
@@ -12,21 +12,29 @@ public class BreedsInteractor implements IBreedsInteractor {
 
     //==========================================start Fields========================================
 
-    IMapper iMapper;
     IBreedsRepository iBreedsRepository;
 
     //-------------------------------------------end -Fields----------------------------------------
 
-    public BreedsInteractor(IMapper iMapper, IBreedsRepository iBreedsRepository) {
-        this.iMapper = iMapper;
+    public BreedsInteractor( IBreedsRepository iBreedsRepository) {
         this.iBreedsRepository = iBreedsRepository;
     }
 
     //==========================================start Public methods================================
 
     @Override
-    public Single<List<BreedModel>> getBreedNames() {
-        return iBreedsRepository.getBreeds().map(breeds -> iMapper.mapToViewModel(breeds));
+    public Single<List<PartialBreedModel>> getBreedNames() {
+        return this.iBreedsRepository.getBreedNames();
+    }
+
+    @Override
+    public Single<List<Breed>> getBreeds() {
+        return this.iBreedsRepository.getBreeds();
+    }
+
+    @Override
+    public Single<Breed> getBreedByName(String name) {
+        return this.iBreedsRepository.getBreedsByName(name).map(breeds -> breeds.get(0));
     }
 
     //-------------------------------------------end Public methods---------------------------------

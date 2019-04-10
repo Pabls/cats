@@ -7,7 +7,7 @@
     tools:context=".presentation.splash.view.SplashActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_logo"
         android:layout_width="@dimen/logo_width"
         android:layout_height="@dimen/logo_height"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +39,7 @@
         android:layout_marginEnd="@dimen/margin_8"
         android:layout_marginBottom="@dimen/margin_8"
         android:text="@string/start_activity.text.app_name.first_half"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/img_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -54,5 +54,5 @@
         android:text="@string/start_activity.text.app_name.second_half"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

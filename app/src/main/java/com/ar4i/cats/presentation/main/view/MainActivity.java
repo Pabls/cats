@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ar4i.cats.R;
+import com.ar4i.cats.app.CatsApp;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
 import com.ar4i.cats.presentation.base.view.BaseActivity;
 import com.ar4i.cats.presentation.breeds.view.BreedsFragment;
@@ -12,6 +13,8 @@ import com.ar4i.cats.presentation.categories.view.CategoriesFragment;
 import com.ar4i.cats.presentation.favorite.view.FavoriteFragment;
 import com.ar4i.cats.presentation.main.presenter.MainPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import javax.inject.Inject;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -26,10 +29,10 @@ public class MainActivity extends BaseActivity implements MainView {
         return intent;
     }
 
-
     // region========================================FIELDS=========================================
 
-    MainPresenter mainPresenter = new MainPresenter();
+    @Inject
+    MainPresenter mainPresenter;
 
     // endregion-------------------------------------FIELDS-----------------------------------------
 
@@ -75,7 +78,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     protected void inject() {
-
+        getComponent().inject(this);
     }
 
     //-------------------------------------------end extends BaseActivity---------------------------
