@@ -5,7 +5,10 @@ import android.net.ConnectivityManager;
 
 import com.ar4i.cats.app.di.components.ApplicationComponent;
 import com.ar4i.cats.app.di.components.DaggerApplicationComponent;
+import com.ar4i.cats.data.database.CatsDB;
 import com.facebook.stetho.Stetho;
+
+import androidx.room.Room;
 
 public class CatsApp extends Application {
 
@@ -14,6 +17,7 @@ public class CatsApp extends Application {
     private static CatsApp INSTANCE;
     private static ApplicationComponent APPLICATION_COMPONENT;
     private static ConnectivityManager CONNECTIVITY_MANAGER;
+    private static CatsDB DATABASE;
 
     // endregion-------------------------------------Fields-----------------------------------------
 
@@ -28,6 +32,8 @@ public class CatsApp extends Application {
 
     public static ConnectivityManager getService() { return CONNECTIVITY_MANAGER; }
 
+    public static CatsDB getDatabase() { return DATABASE; }
+
     // endregion-------------------------------------Public Methods---------------------------------
 
 
@@ -38,6 +44,7 @@ public class CatsApp extends Application {
         super.onCreate();
         initStetho();
         getConnectivityManager();
+        initDatabase();
         createComponent();
     }
 
@@ -63,6 +70,9 @@ public class CatsApp extends Application {
         this.CONNECTIVITY_MANAGER = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
     }
 
+    private void initDatabase(){
+        this.DATABASE  = Room.databaseBuilder(this, CatsDB.class, CatsDB.DATABASE_NAME).build();
+    }
     // endregion-------------------------------------Private Methods--------------------------------
 
 }

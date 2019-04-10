@@ -24,6 +24,5 @@ import dagger.Component;
 public interface ApplicationComponent {
     void inject(SplashActivity activity);
     void inject(MainActivity mainActivity);
-
     void inject(BreedsFragment breedsFragment);
 }
