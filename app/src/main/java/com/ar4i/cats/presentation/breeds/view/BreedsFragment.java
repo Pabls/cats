@@ -1,5 +1,7 @@
 package com.ar4i.cats.presentation.breeds.view;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -9,16 +11,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ar4i.cats.R;
-import com.ar4i.cats.app.CatsApp;
 import com.ar4i.cats.data.network.response.Breed;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
 import com.ar4i.cats.presentation.base.view.BaseFragment;
 import com.ar4i.cats.presentation.breeds.presenter.BreedsPresenter;
 import com.bumptech.glide.Glide;
-import com.jakewharton.rxbinding2.view.RxView;
-import com.jakewharton.rxbinding2.widget.RxAdapter;
 import com.jakewharton.rxbinding2.widget.RxAdapterView;
-import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import java.util.List;
 
@@ -26,6 +24,7 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import io.reactivex.Observable;
 
@@ -145,7 +144,7 @@ public class BreedsFragment extends BaseFragment implements BreedsView {
     }
 
     @Override
-    public void showBreedInfo(Breed breed,String flagApiUrl) {
+    public void showBreedInfo(Breed breed, String flagApiUrl) {
         tvBreedName.setText(breed.getName());
         tvDescription.setText(breed.getDescription());
         tvLifeSpan.setText(breed.getLifeSpan());
@@ -163,6 +162,8 @@ public class BreedsFragment extends BaseFragment implements BreedsView {
         rbStarngerFriendly.setNumStars(breed.getStrangerFriendly());
         rbVocalisation.setNumStars(breed.getVocalisation());
 
+        setNumStars(rbVocalisation, breed.getVocalisation());
+
         Glide.with(this)
                 .load(flagApiUrl)
                 .into(imgCountryFlag);
@@ -178,5 +179,15 @@ public class BreedsFragment extends BaseFragment implements BreedsView {
     }
 
     // endregion-------------------------------------extends BaseFragment---------------------------
+
+    //==========================================start Private Methods===============================
+
+    private void setNumStars(RatingBar ratingBar, int numStars) {
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(numStars - 1)
+                .setColorFilter(ContextCompat.getColor(getActivity(), R.color.pink), PorterDuff.Mode.SRC_ATOP);
+    }
+
+    //-------------------------------------------end Private Methods--------------------------------
 
 }

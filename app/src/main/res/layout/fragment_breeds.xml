@@ -38,8 +38,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_8"
             android:layout_marginEnd="@dimen/margin_8"
+            android:textAlignment="textEnd"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -174,7 +175,7 @@
             android:layout_marginStart="@dimen/margin_8"
             android:layout_marginTop="@dimen/margin_8"
             android:layout_marginEnd="@dimen/margin_8"
-            android:background="@color/colorPrimary"
+            android:background="@color/brown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_description" />
@@ -308,7 +309,7 @@
             android:layout_marginStart="@dimen/margin_8"
             android:layout_marginTop="@dimen/margin_8"
             android:layout_marginEnd="@dimen/margin_8"
-            android:background="@color/colorPrimary"
+            android:background="@color/brown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sp_breeds" />

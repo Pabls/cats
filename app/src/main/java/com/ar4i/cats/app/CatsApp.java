@@ -36,6 +36,7 @@ public class CatsApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        INSTANCE = this;
         initStetho();
         getConnectivityManager();
         createComponent();

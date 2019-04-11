@@ -55,8 +55,7 @@ public class BreedsDao implements IBreedsDao {
     }
 
     @Override
-    public Completable insertBreeds(List<BreedEntity> entities){
-        return Completable.create(emitter -> {
+    public void insertBreeds(List<BreedEntity> entities){
             try {
                 SQLiteDatabase db = this.dBhelper.getWritableDatabase();
                 for(BreedEntity breedEntity: entities){
@@ -64,13 +63,9 @@ public class BreedsDao implements IBreedsDao {
                     db.insert(Breeds.getTableName(), null, cv);
                 }
             } catch (Exception ex) {
-                closeConnection(null);
-                emitter.onError(ex);
             } finally {
                 closeConnection(null);
-                emitter.onComplete();
             }
-        });
     }
 
     // endregion-------------------------------------PUBLIC METHODS---------------------------------

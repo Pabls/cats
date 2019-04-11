@@ -26,6 +26,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(Breeds.getTableCreationCommand());
     }
 

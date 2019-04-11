@@ -1,5 +1,7 @@
 package com.ar4i.cats.app.di.modules;
 
+import android.app.Application;
+
 import com.ar4i.cats.app.CatsApp;
 import com.ar4i.cats.data.database.DBhelper;
 import com.ar4i.cats.data.database.dao.BreedsDao;
