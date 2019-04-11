@@ -10,9 +10,15 @@ import android.widget.TextView;
 
 import com.ar4i.cats.R;
 import com.ar4i.cats.app.CatsApp;
+import com.ar4i.cats.data.network.response.Breed;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
 import com.ar4i.cats.presentation.base.view.BaseFragment;
 import com.ar4i.cats.presentation.breeds.presenter.BreedsPresenter;
+import com.bumptech.glide.Glide;
+import com.jakewharton.rxbinding2.view.RxView;
+import com.jakewharton.rxbinding2.widget.RxAdapter;
+import com.jakewharton.rxbinding2.widget.RxAdapterView;
+import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import java.util.List;
 
@@ -21,6 +27,7 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import butterknife.BindView;
+import io.reactivex.Observable;
 
 public class BreedsFragment extends BaseFragment implements BreedsView {
 
@@ -124,12 +131,50 @@ public class BreedsFragment extends BaseFragment implements BreedsView {
     }
 
     @Override
+    public Observable<Integer> onSpinnerItemSelection() {
+        return RxAdapterView.itemSelections(spBreeds).map(index -> index);
+    }
+
+    @Override
     public void setBreedNamesToSpinner(List<String> names) {
         String[] array = names.toArray(new String[names.size()]);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),
                 android.R.layout.simple_spinner_item, array);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spBreeds.setAdapter(adapter);
+    }
+
+    @Override
+    public void showBreedInfo(Breed breed,String flagApiUrl) {
+        tvBreedName.setText(breed.getName());
+        tvDescription.setText(breed.getDescription());
+        tvLifeSpan.setText(breed.getLifeSpan());
+        tvWeight.setText(breed.getWeight().getMetric());
+        rbAdaptability.setNumStars(breed.getAdaptability());
+        rbAffectionLvl.setNumStars(breed.getAffectionLevel());
+        rbChildFriendly.setNumStars(breed.getChildFriendly());
+        rbDogFriendly.setNumStars(breed.getDogFriendly());
+        rbEnergylvl.setNumStars(breed.getEnergyLevel());
+        rbGrooming.setNumStars(breed.getGrooming());
+        rbHealth.setNumStars(breed.getHealthIssues());
+        rbIntelligence.setNumStars(breed.getIntelligence());
+        rbSheddingLvl.setNumStars(breed.getSheddingLevel());
+        rbSocialNeeds.setNumStars(breed.getSocialNeeds());
+        rbStarngerFriendly.setNumStars(breed.getStrangerFriendly());
+        rbVocalisation.setNumStars(breed.getVocalisation());
+
+        Glide.with(this)
+                .load(flagApiUrl)
+                .into(imgCountryFlag);
+    }
+
+    @Override
+    public void showBreedImg(String imgUrl) {
+        Glide.with(this)
+                .load(imgUrl)
+                .placeholder(R.drawable.ic_cat)
+                .error(R.drawable.ic_cat)
+                .into(imgBreedPhoto);
     }
 
     // endregion-------------------------------------extends BaseFragment---------------------------

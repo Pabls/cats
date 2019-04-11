@@ -6,7 +6,7 @@ import com.ar4i.cats.data.network.response.Breed;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BreedMapper implements IMapper<PartialBreedModel, Breed> {
+public class BreedMapper implements IVmMapper<PartialBreedModel, Breed> {
 
     @Override
     public List<PartialBreedModel> mapToViewModel(List<Breed> breeds) {

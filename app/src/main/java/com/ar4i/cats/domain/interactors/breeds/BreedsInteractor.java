@@ -1,9 +1,10 @@
 package com.ar4i.cats.domain.interactors.breeds;
 
+import com.ar4i.cats.data.models.PartialBreedModel;
 import com.ar4i.cats.data.network.response.Breed;
 import com.ar4i.cats.data.repositories.breeds.IBreedsRepository;
-import com.ar4i.cats.data.models.PartialBreedModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -23,8 +24,21 @@ public class BreedsInteractor implements IBreedsInteractor {
     //==========================================start Public methods================================
 
     @Override
-    public Single<List<PartialBreedModel>> getBreedNames() {
+    public Single<List<PartialBreedModel>> getBreedModels() {
         return this.iBreedsRepository.getBreedNames();
+    }
+
+    @Override
+    public Single<List<String>> getBreedNames(List<PartialBreedModel> models) {
+        return Single.create(emitter -> {
+            List<String> names = new ArrayList<>();
+            if(!models.isEmpty()){
+                for(PartialBreedModel breedModel: models){
+                    names.add(breedModel.getName());
+                }
+            }
+            emitter.onSuccess(names);
+        });
     }
 
     @Override

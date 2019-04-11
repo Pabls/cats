@@ -1,5 +1,6 @@
 package com.ar4i.cats.app.di.modules;
 
+import com.ar4i.cats.data.database.dao.BreedsDao;
 import com.ar4i.cats.data.mappers.BreedMapper;
 import com.ar4i.cats.data.network.Api;
 import com.ar4i.cats.data.repositories.breeds.BreedsRepository;
@@ -16,8 +17,8 @@ import dagger.Provides;
 public class RepositoriesModule {
 
     @Provides
-    public BreedsRepository provideBreedsRepository(Api api, BreedMapper breedMapper) {
-        return new BreedsRepository(api, breedMapper);
+    public BreedsRepository provideBreedsRepository(Api api, BreedMapper breedMapper, BreedsDao breedsDao) {
+        return new BreedsRepository(api, breedMapper, breedsDao);
     }
 
     @Provides

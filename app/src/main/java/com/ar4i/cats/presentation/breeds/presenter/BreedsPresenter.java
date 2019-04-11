@@ -1,6 +1,9 @@
 package com.ar4i.cats.presentation.breeds.presenter;
 
+import com.ar4i.cats.data.models.PartialBreedModel;
+import com.ar4i.cats.data.network.response.Breed;
 import com.ar4i.cats.domain.interactors.breeds.IBreedsInteractor;
+import com.ar4i.cats.domain.interactors.images.ImagesInteractor;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
 import com.ar4i.cats.presentation.breeds.view.BreedsView;
 
@@ -15,13 +18,17 @@ import io.reactivex.schedulers.Schedulers;
 public class BreedsPresenter extends BasePresenter<BreedsView> {
 
     @Inject
-    public BreedsPresenter(IBreedsInteractor mIBreedsInteractor) {
+    public BreedsPresenter(IBreedsInteractor mIBreedsInteractor, ImagesInteractor imagesInteractor) {
         this.iBreedsInteractor = mIBreedsInteractor;
+        this.imagesInteractor = imagesInteractor;
     }
 
     // region========================================FIELDS=========================================
 
     private IBreedsInteractor iBreedsInteractor;
+    private ImagesInteractor imagesInteractor;
+    List<PartialBreedModel> partialBreedModels = new ArrayList<>();
+    List<String> breedNames = new ArrayList<>();
 
     // endregion-------------------------------------FIELDS-----------------------------------------
 
@@ -30,25 +37,69 @@ public class BreedsPresenter extends BasePresenter<BreedsView> {
     @Override
     public void attachView(BreedsView view) {
         super.attachView(view);
-        getBreedNames();
+        getBreedModels();
+        track(getMvpView().onSpinnerItemSelection()
+                .subscribe(index -> {
+                    if (!this.partialBreedModels.isEmpty()){
+                        getBreedByName(this.partialBreedModels.get(index).getName());
+                        getImageByBreedId(this.partialBreedModels.get(index).getId());
+                    }
+                }));
     }
 
     // endregion-------------------------------------extends BasePresenter<BreedsView>--------------
 
     // region========================================PRIVATE METHODS================================
 
-    private void getBreedNames() {
-        track(this.iBreedsInteractor.getBreedNames()
+    private void getBreedModels() {
+        track(this.iBreedsInteractor.getBreedModels()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(partialBreedModels -> {
+                    if (partialBreedModels != null && !partialBreedModels.isEmpty()) {
+                        this.partialBreedModels = partialBreedModels;
+                        getBreedByName(this.partialBreedModels.get(0).getName());
+                        getImageByBreedId(this.partialBreedModels.get(0).getId());
+                        getBreedNames(partialBreedModels);
+                    }
+                }));
+    }
+
+    private void getBreedNames(List<PartialBreedModel> models) {
+        track(this.iBreedsInteractor.getBreedNames(models)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(names -> {
-                    List<String> list = new ArrayList<>();
-                    list.add("as");
-                    list.add("as2");
-                    getMvpView().setBreedNamesToSpinner(list);
-                }, error -> {
-
+                    this.breedNames = names;
+                    getMvpView().setBreedNamesToSpinner(names);
                 }));
+    }
+
+    private void getBreedByName(String name) {
+        track(this.iBreedsInteractor.getBreedByName(name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(breed -> {
+                    if (breed != null) {
+                        getMvpView().showBreedInfo(breed, getFlagApiUrl(breed));
+                    }
+                }));
+    }
+
+    private void getImageByBreedId(String breedId) {
+        track(this.imagesInteractor.getImageByBreedId(breedId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(imgUrl -> {
+                    if (imgUrl != null && !imgUrl.isEmpty()) {
+                        getMvpView().showBreedImg(imgUrl);
+                    }
+                }));
+    }
+
+    private String getFlagApiUrl(Breed breed) {
+        String flagApiUrl = "https://www.countryflags.io/%s/flat/64.png";
+        return String.format(flagApiUrl, breed.getCountryCode());
     }
 
     // endregion-------------------------------------PRIVATE METHODS--------------------------------

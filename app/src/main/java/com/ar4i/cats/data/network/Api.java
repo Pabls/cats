@@ -60,7 +60,7 @@ public interface Api {
                                         @Query("limit") int limit,
                                         @Query("category_ids") List<Integer> categoryIds,
                                         @Query("format") String format,
-                                        @Query("breed_id") String breedsIds);
+                                        @Query("breed_id") String breedId);
 
 
     /**

@@ -4,4 +4,5 @@ import io.reactivex.Single;
 
 public interface IImagesInteractor {
     Single<String> getRandomImageUrl();
+    Single<String> getImageByBreedId(String breedId);
 }

@@ -32,5 +32,17 @@ public class ImagesRepository implements IImagesRepository {
                 .map(fullImgData -> fullImgData.get(0).getUrl());
     }
 
+    @Override
+    public Single<String> getImageByBreedId(String breedId) {
+        return this.api.getImages(ImageSize.THUMB,
+                ImageMimeType.GIF,
+                null,
+                1,
+                null,
+                DataFormat.JSON,
+                breedId)
+                .map(fullImgData -> fullImgData.get(0).getUrl());
+    }
+
     // endregion-------------------------------------implements IImagesRepository-------------------
 }

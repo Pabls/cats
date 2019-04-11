@@ -17,8 +17,8 @@ public class PresentationModule {
     }
 
     @Provides
-    BreedsPresenter provideBreedsPresenter(BreedsInteractor breedsInteractor){
-        return new BreedsPresenter(breedsInteractor);
+    BreedsPresenter provideBreedsPresenter(BreedsInteractor breedsInteractor, ImagesInteractor imagesInteractor){
+        return new BreedsPresenter(breedsInteractor, imagesInteractor);
     }
 
     @Provides

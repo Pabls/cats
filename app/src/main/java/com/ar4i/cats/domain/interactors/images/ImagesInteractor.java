@@ -23,5 +23,10 @@ public class ImagesInteractor implements IImagesInteractor {
         return this.iImagesRepository.getRandomImage();
     }
 
+    @Override
+    public Single<String> getImageByBreedId(String breedId) {
+        return this.iImagesRepository.getImageByBreedId(breedId);
+    }
+
     // endregion-------------------------------------implements IImagesInteractor-------------------
 }

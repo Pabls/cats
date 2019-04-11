@@ -1,6 +1,7 @@
 package com.ar4i.cats.data.repositories.breeds;
 
-import com.ar4i.cats.data.mappers.IMapper;
+import com.ar4i.cats.data.database.dao.IBreedsDao;
+import com.ar4i.cats.data.mappers.IVmMapper;
 import com.ar4i.cats.data.models.PartialBreedModel;
 import com.ar4i.cats.data.network.Api;
 import com.ar4i.cats.data.network.response.Breed;
@@ -11,15 +12,17 @@ import io.reactivex.Single;
 
 public class BreedsRepository implements IBreedsRepository {
 
-    public BreedsRepository(Api api, IMapper iMapper) {
+    public BreedsRepository(Api api, IVmMapper iMapper, IBreedsDao breedsDao) {
         this.api = api;
         this.iMapper = iMapper;
+        this.breedsDao = breedsDao;
     }
 
     //==========================================start FIELDS========================================
 
     private Api api;
-    private IMapper iMapper;
+    private IVmMapper iMapper;
+    private IBreedsDao breedsDao;
 
     //-------------------------------------------end FIELDS-----------------------------------------
 
@@ -41,6 +44,5 @@ public class BreedsRepository implements IBreedsRepository {
     }
 
     //-------------------------------------------end implements IBreedsRepository-------------------
-
 
 }

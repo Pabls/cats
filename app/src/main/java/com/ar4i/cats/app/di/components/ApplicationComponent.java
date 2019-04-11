@@ -1,5 +1,6 @@
 package com.ar4i.cats.app.di.components;
 
+import com.ar4i.cats.app.di.modules.DatabaseModule;
 import com.ar4i.cats.app.di.modules.InteractorsModule;
 import com.ar4i.cats.app.di.modules.MappersModule;
 import com.ar4i.cats.app.di.modules.NetworkModule;
@@ -15,6 +16,7 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
+        DatabaseModule.class,
         InteractorsModule.class,
         MappersModule.class,
         NetworkModule.class,
@@ -22,8 +24,9 @@ import dagger.Component;
         RepositoriesModule.class,
 })
 public interface ApplicationComponent {
+    // Activities
     void inject(SplashActivity activity);
     void inject(MainActivity mainActivity);
-
+    // Fragments
     void inject(BreedsFragment breedsFragment);
 }

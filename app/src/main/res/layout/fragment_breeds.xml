@@ -24,12 +24,13 @@
 
         <ImageView
             android:id="@+id/img_breed_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
             android:layout_marginStart="@dimen/margin_8"
-            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sp_breeds"
+            app:layout_constraintTop_toBottomOf="@+id/first_divider"
+            android:src="@drawable/ic_cat"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -37,32 +38,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8"
-            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/margin_8"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/img_breed_photo"
-            app:layout_constraintTop_toBottomOf="@+id/sp_breeds" />
+            app:layout_constraintTop_toBottomOf="@+id/first_divider" />
 
         <TextView
             android:id="@+id/tv_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/breeds_fragment.text.country"
             android:textSize="@dimen/breeds_fragment.specification_size"
+            app:layout_constraintBottom_toBottomOf="@+id/img_country_flag"
             app:layout_constraintEnd_toStartOf="@+id/img_country_flag"
-            app:layout_constraintTop_toBottomOf="@+id/tv_breed_name" />
+            app:layout_constraintTop_toTopOf="@+id/img_country_flag" />
 
         <ImageView
             android:id="@+id/img_country_flag"
             android:layout_width="@dimen/breeds_fragment.country_flag_img.size"
             android:layout_height="@dimen/breeds_fragment.country_flag_img.size"
             android:layout_marginTop="@dimen/margin_8"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_breed_name"
             tools:srcCompat="@tools:sample/avatars" />
@@ -84,7 +86,7 @@
             style="@style/AppTheme.Breeds.SpecificationsText"
             android:text="@string/breeds_fragment.text.affection_level"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+            app:layout_constraintTop_toBottomOf="@+id/second_divider" />
 
         <TextView
             android:id="@+id/tv_adaptability"
@@ -166,7 +168,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_health" />
 
         <View
-            android:id="@+id/divider"
+            android:id="@+id/second_divider"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="@dimen/divider.height"
             android:layout_marginStart="@dimen/margin_8"
@@ -277,7 +279,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="12-16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_country" />
 
@@ -297,9 +298,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="12-13"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_life_span_label" />
+
+        <View
+            android:id="@+id/first_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider.height"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sp_breeds" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
