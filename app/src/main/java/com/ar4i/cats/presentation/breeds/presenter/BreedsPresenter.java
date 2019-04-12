@@ -44,7 +44,7 @@ public class BreedsPresenter extends BasePresenter<BreedsView> {
                         getBreedByName(this.partialBreedModels.get(index).getName());
                         getImageByBreedId(this.partialBreedModels.get(index).getId());
                     }
-                }));
+                }, throwable -> getMvpView().showMessage(throwable.getMessage())));
     }
 
     // endregion-------------------------------------extends BasePresenter<BreedsView>--------------
@@ -62,7 +62,7 @@ public class BreedsPresenter extends BasePresenter<BreedsView> {
                         getImageByBreedId(this.partialBreedModels.get(0).getId());
                         getBreedNames(partialBreedModels);
                     }
-                }));
+                }, throwable -> getMvpView().showMessage(throwable.getMessage())));
     }
 
     private void getBreedNames(List<PartialBreedModel> models) {
@@ -72,7 +72,7 @@ public class BreedsPresenter extends BasePresenter<BreedsView> {
                 .subscribe(names -> {
                     this.breedNames = names;
                     getMvpView().setBreedNamesToSpinner(names);
-                }));
+                }, throwable -> getMvpView().showMessage(throwable.getMessage())));
     }
 
     private void getBreedByName(String name) {
@@ -83,7 +83,7 @@ public class BreedsPresenter extends BasePresenter<BreedsView> {
                     if (breed != null) {
                         getMvpView().showBreedInfo(breed, getFlagApiUrl(breed));
                     }
-                }));
+                }, throwable -> getMvpView().showMessage(throwable.getMessage())));
     }
 
     private void getImageByBreedId(String breedId) {
@@ -94,7 +94,7 @@ public class BreedsPresenter extends BasePresenter<BreedsView> {
                     if (imgUrl != null && !imgUrl.isEmpty()) {
                         getMvpView().showBreedImg(imgUrl);
                     }
-                }));
+                }, throwable -> getMvpView().showMessage(throwable.getMessage())));
     }
 
     private String getFlagApiUrl(Breed breed) {

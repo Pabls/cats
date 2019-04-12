@@ -162,8 +162,6 @@ public class BreedsFragment extends BaseFragment implements BreedsView {
         rbStarngerFriendly.setNumStars(breed.getStrangerFriendly());
         rbVocalisation.setNumStars(breed.getVocalisation());
 
-        setNumStars(rbVocalisation, breed.getVocalisation());
-
         Glide.with(this)
                 .load(flagApiUrl)
                 .into(imgCountryFlag);
@@ -179,15 +177,4 @@ public class BreedsFragment extends BaseFragment implements BreedsView {
     }
 
     // endregion-------------------------------------extends BaseFragment---------------------------
-
-    //==========================================start Private Methods===============================
-
-    private void setNumStars(RatingBar ratingBar, int numStars) {
-        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(numStars - 1)
-                .setColorFilter(ContextCompat.getColor(getActivity(), R.color.pink), PorterDuff.Mode.SRC_ATOP);
-    }
-
-    //-------------------------------------------end Private Methods--------------------------------
-
 }

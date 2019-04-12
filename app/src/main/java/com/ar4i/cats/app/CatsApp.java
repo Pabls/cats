@@ -2,10 +2,14 @@ package com.ar4i.cats.app;
 
 import android.app.Application;
 import android.net.ConnectivityManager;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.ar4i.cats.app.di.components.ApplicationComponent;
 import com.ar4i.cats.app.di.components.DaggerApplicationComponent;
 import com.facebook.stetho.Stetho;
+
+import io.reactivex.plugins.RxJavaPlugins;
 
 public class CatsApp extends Application {
 
@@ -54,6 +58,9 @@ public class CatsApp extends Application {
         initializerBuilder.enableDumpapp(Stetho.defaultDumperPluginsProvider(this));
         Stetho.Initializer initializer = initializerBuilder.build();
         Stetho.initialize(initializer);
+        RxJavaPlugins.setErrorHandler(throwable -> {
+            Log.d("ErrorHandler", throwable.getMessage());
+        });
     }
 
     private void createComponent() {

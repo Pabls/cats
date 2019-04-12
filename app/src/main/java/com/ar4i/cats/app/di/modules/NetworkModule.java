@@ -6,6 +6,8 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -18,7 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    private String baseUrl = "https://api.thecatapi.com/";
+    private static final int DEFAULT_READ_TIMEOUT_SEC = 30;
+    private static final int DEFAULT_CONNECT_TIMEOUT_SEC = 30;
+    private static final String BASE_URL = "https://api.thecatapi.com/";
 
     @Provides
     @Singleton
@@ -40,7 +44,9 @@ public class NetworkModule {
     @Singleton
     OkHttpClient provideOkHttpClient(StethoInterceptor stethoInterceptor, TokenInterceptor tokenInterceptor) {
         return new OkHttpClient.Builder()
-                .addInterceptor(stethoInterceptor)
+                .connectTimeout(DEFAULT_CONNECT_TIMEOUT_SEC, TimeUnit.SECONDS)
+                .readTimeout(DEFAULT_READ_TIMEOUT_SEC, TimeUnit.SECONDS)
+                .addNetworkInterceptor(stethoInterceptor)
                 .addNetworkInterceptor(tokenInterceptor)
                 .build();
     }
@@ -52,7 +58,7 @@ public class NetworkModule {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient)
-                .baseUrl(baseUrl)
+                .baseUrl(BASE_URL)
                 .build();
     }
 

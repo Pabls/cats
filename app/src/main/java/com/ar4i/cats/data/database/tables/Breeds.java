@@ -18,8 +18,6 @@ public final class Breeds {
 
     private static String GET_ALL_BREEDS = "SELECT * FROM %s";
 
-    private static String INSERT_BREED = "INSERT INTO %s (%s, %s) VALUES (%s, %s);";
-
     // endregion-------------------------------------FIELDS-----------------------------------------
 
     // region========================================PUBLIC METHODS=================================

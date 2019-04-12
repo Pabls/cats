@@ -11,7 +11,6 @@ import com.ar4i.cats.data.database.tables.Breeds;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Single;
 
 public class BreedsDao implements IBreedsDao {
@@ -60,7 +59,7 @@ public class BreedsDao implements IBreedsDao {
                 SQLiteDatabase db = this.dBhelper.getWritableDatabase();
                 for(BreedEntity breedEntity: entities){
                     ContentValues cv = Breeds.toContentValues(breedEntity.getId(), breedEntity.getName());
-                    db.insert(Breeds.getTableName(), null, cv);
+                    db.replace(Breeds.getTableName(), null, cv);
                 }
             } catch (Exception ex) {
             } finally {
