@@ -3,8 +3,6 @@ package com.ar4i.cats.data.repositories.system;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
 
@@ -17,8 +15,8 @@ public class SystemRepository implements ISystemRepository {
     // region========================================Public Methods=================================
 
     @Override
-    public Single<Boolean> isWiFiEnabled() {
-        return Single.create(emitter -> emitter.onSuccess(isWiFiWorking()));
+    public Single<Boolean> hasNetworkConnection() {
+        return Single.create(emitter -> emitter.onSuccess(hasConnection()));
     }
 
     @Override
@@ -42,22 +40,12 @@ public class SystemRepository implements ISystemRepository {
 
     // region========================================Private Methods================================
 
-    private boolean isWiFiWorking() {
+    private boolean hasConnection() {
         boolean res = false;
         final ConnectivityManager cm = CatsApp.getService();
         if (cm != null) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                final NetworkInfo ni = cm.getActiveNetworkInfo();
-                if (ni != null) {
-                    res = (ni.isConnected() && (ni.getType() == ConnectivityManager.TYPE_WIFI));
-                }
-            } else {
-                final Network n = cm.getActiveNetwork();
-                if (n != null) {
-                    final NetworkCapabilities nc = cm.getNetworkCapabilities(n);
-                    res = nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-                }
-            }
+            final NetworkInfo ni = cm.getActiveNetworkInfo();
+            res = ni != null && ni.isConnected();
         }
         return res;
     }
