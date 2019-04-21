@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.ar4i.cats.R;
 import com.ar4i.cats.app.CatsApp;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
+import com.ar4i.cats.presentation.base.presenter.MvpPresenter;
 import com.ar4i.cats.presentation.base.view.BaseActivity;
 import com.ar4i.cats.presentation.breeds.view.BreedsFragment;
 import com.ar4i.cats.presentation.categories.view.CategoriesFragment;
@@ -37,14 +38,12 @@ public class MainActivity extends BaseActivity implements MainView {
     // endregion-------------------------------------FIELDS-----------------------------------------
 
 
-
     // region========================================UI=============================================
 
     @BindView(R.id.bnv_nav)
     BottomNavigationView bnvView;
 
     // endregion-------------------------------------UI---------------------------------------------
-
 
 
     //==========================================start Lifecycle=====================================
@@ -63,11 +62,10 @@ public class MainActivity extends BaseActivity implements MainView {
     //-------------------------------------------end Lifecycle--------------------------------------
 
 
-
     //==========================================start extends BaseActivity==========================
 
     @Override
-    protected BasePresenter getPresenter() {
+    protected MvpPresenter getPresenter() {
         return mainPresenter;
     }
 

@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import com.ar4i.cats.R;
 import com.ar4i.cats.app.CatsApp;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
+import com.ar4i.cats.presentation.base.presenter.MvpPresenter;
 import com.ar4i.cats.presentation.base.view.BaseActivity;
 import com.ar4i.cats.presentation.main.view.MainActivity;
 import com.ar4i.cats.presentation.splash.presenter.SplashPresenter;
@@ -46,7 +47,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
     //==========================================start extends BaseActivity==========================
 
     @Override
-    protected BasePresenter getPresenter() { return splashPresenter; }
+    protected MvpPresenter getPresenter() { return splashPresenter; }
 
     @Override
     protected int getLayoutId() {

@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.ar4i.cats.app.CatsApp;
 import com.ar4i.cats.app.di.components.ApplicationComponent;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
+import com.ar4i.cats.presentation.base.presenter.MvpPresenter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,8 +41,8 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        if(getPresenter() != null)
-        getPresenter().attachView(this);
+        if (getPresenter() != null)
+            getPresenter().attachView(this);
     }
 
     @Override
@@ -71,7 +72,7 @@ public abstract class BaseFragment extends Fragment implements MvpView {
 
     //==========================================start ABSTRACT METHODS==============================
 
-    protected abstract BasePresenter<MvpView> getPresenter();
+    protected abstract MvpPresenter<MvpView> getPresenter();
 
     protected abstract int getLayoutId();
 
