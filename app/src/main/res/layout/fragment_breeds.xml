@@ -24,10 +24,10 @@
 
         <ImageView
             android:id="@+id/img_breed_photo"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
+            android:layout_width="@dimen/breeds_fragment.breed_image.size"
+            android:layout_height="@dimen/breeds_fragment.breed_image.size"
             android:layout_marginStart="@dimen/margin_8"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/first_divider"
             android:src="@drawable/ic_cat"
@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/tv_breed_name"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8"
             android:layout_marginTop="@dimen/margin_8"
@@ -52,8 +52,8 @@
             android:id="@+id/tv_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_8"
             android:text="@string/breeds_fragment.text.country"
             android:textSize="@dimen/breeds_fragment.specification_size"
             app:layout_constraintBottom_toBottomOf="@+id/img_country_flag"
@@ -75,7 +75,7 @@
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_8"
             android:layout_marginEnd="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -268,8 +268,8 @@
             android:id="@+id/tv_life_span_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
             android:text="@string/breeds_fragment.text.life_span"
             app:layout_constraintEnd_toStartOf="@+id/tv_life_span"
             app:layout_constraintTop_toBottomOf="@+id/tv_country" />
@@ -278,8 +278,8 @@
             android:id="@+id/tv_life_span"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_country" />
 
@@ -287,8 +287,8 @@
             android:id="@+id/tv_weight_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
             android:text="@string/breeds_fragment.text.weigth"
             app:layout_constraintEnd_toStartOf="@+id/tv_weight"
             app:layout_constraintTop_toBottomOf="@+id/tv_life_span_label" />
@@ -297,8 +297,8 @@
             android:id="@+id/tv_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_life_span_label" />
 

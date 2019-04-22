@@ -9,6 +9,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String" , "BASE_URL" , '"https://api.thecatapi.com/"'
+        buildConfigField "int" , "DEFAULT_READ_TIMEOUT_SEC" , '30'
+        buildConfigField "int" , "DEFAULT_CONNECT_TIMEOUT_SEC" , '30'
+        buildConfigField "String" , "TOKEN_HEADER_KEY" , '"x-api-key"'
+        buildConfigField "String" , "TOKEN_HEADER_VALUE" , '"3068ca6b-8ce6-450f-9207-19660354ecd7"'
     }
     buildTypes {
         release {

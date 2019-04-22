@@ -1,5 +1,6 @@
 package com.ar4i.cats.app.di.modules;
 
+import com.ar4i.cats.BuildConfig;
 import com.ar4i.cats.data.network.Api;
 import com.ar4i.cats.data.network.interceptors.TokenInterceptor;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -19,10 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class NetworkModule {
-
-    private static final int DEFAULT_READ_TIMEOUT_SEC = 30;
-    private static final int DEFAULT_CONNECT_TIMEOUT_SEC = 30;
-    private static final String BASE_URL = "https://api.thecatapi.com/";
 
     @Provides
     @Singleton
@@ -44,8 +41,8 @@ public class NetworkModule {
     @Singleton
     OkHttpClient provideOkHttpClient(StethoInterceptor stethoInterceptor, TokenInterceptor tokenInterceptor) {
         return new OkHttpClient.Builder()
-                .connectTimeout(DEFAULT_CONNECT_TIMEOUT_SEC, TimeUnit.SECONDS)
-                .readTimeout(DEFAULT_READ_TIMEOUT_SEC, TimeUnit.SECONDS)
+                .connectTimeout(BuildConfig.DEFAULT_CONNECT_TIMEOUT_SEC, TimeUnit.SECONDS)
+                .readTimeout(BuildConfig.DEFAULT_READ_TIMEOUT_SEC, TimeUnit.SECONDS)
                 .addNetworkInterceptor(stethoInterceptor)
                 .addNetworkInterceptor(tokenInterceptor)
                 .build();
@@ -58,7 +55,7 @@ public class NetworkModule {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient)
-                .baseUrl(BASE_URL)
+                .baseUrl(BuildConfig.BASE_URL)
                 .build();
     }
 

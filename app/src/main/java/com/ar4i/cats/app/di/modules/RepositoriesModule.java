@@ -4,6 +4,7 @@ import com.ar4i.cats.app.CatsApp;
 import com.ar4i.cats.data.database.dao.BreedsDao;
 import com.ar4i.cats.data.mappers.BreedMapper;
 import com.ar4i.cats.data.mappers.CategoryMapper;
+import com.ar4i.cats.data.mappers.ImageMapper;
 import com.ar4i.cats.data.network.Api;
 import com.ar4i.cats.data.repositories.breeds.BreedsRepository;
 import com.ar4i.cats.data.repositories.categories.CategoriesRepository;
@@ -31,8 +32,8 @@ public class RepositoriesModule {
     public FavoritesRepository provideFavoritesRepository(Api api) { return new FavoritesRepository(api); }
 
     @Provides
-    public ImagesRepository provideImagesRepository(Api api) {
-        return new ImagesRepository(api);
+    public ImagesRepository provideImagesRepository(Api api, ImageMapper imageMapper) {
+        return new ImagesRepository(api, imageMapper);
     }
 
     @Provides

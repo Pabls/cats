@@ -2,6 +2,8 @@ package com.ar4i.cats.domain.interactors.images;
 
 import com.ar4i.cats.data.repositories.images.IImagesRepository;
 
+import java.util.List;
+
 import io.reactivex.Single;
 
 public class ImagesInteractor implements IImagesInteractor {
@@ -26,6 +28,11 @@ public class ImagesInteractor implements IImagesInteractor {
     @Override
     public Single<String> getImageByBreedId(String breedId) {
         return this.iImagesRepository.getImageByBreedId(breedId);
+    }
+
+    @Override
+    public Single<List<String>> getImagesByCategory(int categoryId) {
+        return this.iImagesRepository.getImagesByCategory(categoryId);
     }
 
     // endregion-------------------------------------implements IImagesInteractor-------------------

@@ -32,7 +32,8 @@ public class PresentationModule {
     }
 
     @Provides
-    CategoriesPresenter provideCategoriesPresenter(CategoriesInteractor categoriesInteractor) {
-        return new CategoriesPresenter(categoriesInteractor);
+    CategoriesPresenter provideCategoriesPresenter(CategoriesInteractor categoriesInteractor,
+                                                   ImagesInteractor imagesInteractor) {
+        return new CategoriesPresenter(categoriesInteractor, imagesInteractor);
     }
 }
