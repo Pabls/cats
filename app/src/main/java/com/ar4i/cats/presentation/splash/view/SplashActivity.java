@@ -47,6 +47,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
     //==========================================start extends BaseActivity==========================
 
     @Override
+    @SuppressWarnings("unchecked")
     protected MvpPresenter getPresenter() { return splashPresenter; }
 
     @Override

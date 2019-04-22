@@ -1,6 +1,6 @@
-package com.ar4i.cats.data.database.entities;
+package com.ar4i.cats.data.database.dto;
 
-public class BreedEntity {
+public class BreedDto {
     // region========================================FIELDS=========================================
 
     private String id;
@@ -8,7 +8,7 @@ public class BreedEntity {
 
     // endregion-------------------------------------FIELDS-----------------------------------------
 
-    public BreedEntity(String id, String name) {
+    public BreedDto(String id, String name) {
         this.id = id;
         this.name = name;
     }

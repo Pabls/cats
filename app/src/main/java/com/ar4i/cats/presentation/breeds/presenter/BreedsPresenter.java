@@ -55,6 +55,8 @@ public class BreedsPresenter extends BasePresenter<BreedsView> {
         track(this.iBreedsInteractor.getBreedModels()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(_void -> getMvpView().showLoad())
+                .doOnEvent((res, error) -> getMvpView().hideLoad())
                 .subscribe(partialBreedModels -> {
                     if (partialBreedModels != null && !partialBreedModels.isEmpty()) {
                         this.partialBreedModels = partialBreedModels;
@@ -79,6 +81,8 @@ public class BreedsPresenter extends BasePresenter<BreedsView> {
         track(this.iBreedsInteractor.getBreedByName(name)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(_void -> getMvpView().showLoad())
+                .doOnEvent((res, error) -> getMvpView().hideLoad())
                 .subscribe(breed -> {
                     if (breed != null) {
                         getMvpView().showBreedInfo(breed, getFlagApiUrl(breed));

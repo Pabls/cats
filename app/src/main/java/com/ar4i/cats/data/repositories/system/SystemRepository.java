@@ -12,6 +12,15 @@ import io.reactivex.Single;
 
 public class SystemRepository implements ISystemRepository {
 
+    public SystemRepository(CatsApp app) {
+        this.app = app;
+    }
+    // region========================================Fields=========================================
+
+    private CatsApp app;
+
+    // endregion-------------------------------------Fields-----------------------------------------
+
     // region========================================Public Methods=================================
 
     @Override
@@ -24,12 +33,32 @@ public class SystemRepository implements ISystemRepository {
         return Single.create(emitter -> {
             boolean res = true;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                res = CatsApp.getInstance()
-                        .checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
-                        CatsApp.getInstance()
-                                .checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                        CatsApp.getInstance()
-                                .checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+                res = hasPermissions(app.checkSelfPermission(Manifest.permission.CAMERA)) &&
+                      hasPermissions(app.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) &&
+                      hasPermissions(app.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE));
+            }
+            emitter.onSuccess(res);
+        });
+    }
+
+    @Override
+    public Single<Boolean> hasExternalStoragePermissions() {
+        return Single.create(emitter -> {
+            boolean res = true;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                res = hasPermissions(app.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) &&
+                      hasPermissions(app.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE));
+            }
+            emitter.onSuccess(res);
+        });
+    }
+
+    @Override
+    public Single<Boolean> hasCameraPermissions() {
+        return Single.create(emitter -> {
+            boolean res = true;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                res = hasPermissions(app.checkSelfPermission(Manifest.permission.CAMERA));
             }
             emitter.onSuccess(res);
         });
@@ -39,6 +68,10 @@ public class SystemRepository implements ISystemRepository {
 
 
     // region========================================Private Methods================================
+
+    private boolean hasPermissions(int permissions) {
+        return permissions == PackageManager.PERMISSION_GRANTED;
+    }
 
     private boolean hasConnection() {
         boolean res = false;

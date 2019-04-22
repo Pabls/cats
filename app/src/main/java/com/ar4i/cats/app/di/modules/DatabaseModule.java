@@ -1,7 +1,5 @@
 package com.ar4i.cats.app.di.modules;
 
-import android.app.Application;
-
 import com.ar4i.cats.app.CatsApp;
 import com.ar4i.cats.data.database.DBhelper;
 import com.ar4i.cats.data.database.dao.BreedsDao;
@@ -16,8 +14,8 @@ public class DatabaseModule {
 
     @Provides
     @Singleton
-    DBhelper provideDbHelper() {
-        return new DBhelper(CatsApp.getInstance());
+    DBhelper provideDbHelper(CatsApp application) {
+        return new DBhelper(application);
     }
 
     @Provides

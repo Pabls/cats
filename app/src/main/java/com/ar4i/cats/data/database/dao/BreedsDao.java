@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ar4i.cats.data.database.DBhelper;
-import com.ar4i.cats.data.database.entities.BreedEntity;
+import com.ar4i.cats.data.database.dto.BreedDto;
 import com.ar4i.cats.data.database.tables.Breeds;
 
 import java.util.ArrayList;
@@ -28,9 +28,9 @@ public class BreedsDao implements IBreedsDao {
     // region========================================PUBLIC METHODS=================================
 
     @Override
-    public Single<List<BreedEntity>> getBreeds() {
+    public Single<List<BreedDto>> getBreeds() {
         return Single.create(emitter -> {
-            List<BreedEntity> breedEntities = new ArrayList<>();
+            List<BreedDto> breedEntities = new ArrayList<>();
             Cursor cursor = null;
             try {
                 SQLiteDatabase db = this.dBhelper.getWritableDatabase();
@@ -39,7 +39,7 @@ public class BreedsDao implements IBreedsDao {
                     while (!cursor.isAfterLast()) {
                         String id = cursor.getString(cursor.getColumnIndex(Breeds.getID()));
                         String name = cursor.getString(cursor.getColumnIndex(Breeds.getNAME()));
-                        breedEntities.add(new BreedEntity(id, name));
+                        breedEntities.add(new BreedDto(id, name));
                         cursor.moveToNext();
                     }
                 }
@@ -54,11 +54,11 @@ public class BreedsDao implements IBreedsDao {
     }
 
     @Override
-    public void insertBreeds(List<BreedEntity> entities){
+    public void insertBreeds(List<BreedDto> entities){
             try {
                 SQLiteDatabase db = this.dBhelper.getWritableDatabase();
-                for(BreedEntity breedEntity: entities){
-                    ContentValues cv = Breeds.toContentValues(breedEntity.getId(), breedEntity.getName());
+                for(BreedDto breedDto : entities){
+                    ContentValues cv = Breeds.toContentValues(breedDto.getId(), breedDto.getName());
                     db.replace(Breeds.getTableName(), null, cv);
                 }
             } catch (Exception ex) {

@@ -1,7 +1,7 @@
 package com.ar4i.cats.data.repositories.breeds;
 
 import com.ar4i.cats.data.database.dao.IBreedsDao;
-import com.ar4i.cats.data.database.entities.BreedEntity;
+import com.ar4i.cats.data.database.dto.BreedDto;
 import com.ar4i.cats.data.mappers.IVmMapper;
 import com.ar4i.cats.data.models.PartialBreedModel;
 import com.ar4i.cats.data.network.Api;
@@ -33,7 +33,7 @@ public class BreedsRepository implements IBreedsRepository {
     public Single<List<PartialBreedModel>> getBreedNames() {
         return this.api.getBreeds()
                 .doOnSuccess(breeds -> {
-                    List<BreedEntity> breedEntities = this.iMapper.mapToDbEntity(breeds);
+                    List<BreedDto> breedEntities = this.iMapper.mapToDbEntity(breeds);
                     this.breedsDao.insertBreeds(breedEntities);
                 }).map(breeds -> this.iMapper.mapToViewModel(breeds));
     }

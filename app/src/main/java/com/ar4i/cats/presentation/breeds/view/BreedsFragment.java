@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.ar4i.cats.R;
 import com.ar4i.cats.data.network.response.Breed;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
+import com.ar4i.cats.presentation.base.presenter.MvpPresenter;
 import com.ar4i.cats.presentation.base.view.BaseFragment;
 import com.ar4i.cats.presentation.breeds.presenter.BreedsPresenter;
 import com.bumptech.glide.Glide;
@@ -115,7 +116,7 @@ public class BreedsFragment extends BaseFragment implements BreedsView {
     // region========================================extends BaseFragment===========================
 
     @Override
-    protected BasePresenter getPresenter() {
+    protected MvpPresenter getPresenter() {
         return breedsPresenter;
     }
 

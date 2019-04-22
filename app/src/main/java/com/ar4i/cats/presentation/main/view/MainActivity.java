@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ar4i.cats.R;
-import com.ar4i.cats.app.CatsApp;
-import com.ar4i.cats.presentation.base.presenter.BasePresenter;
 import com.ar4i.cats.presentation.base.presenter.MvpPresenter;
 import com.ar4i.cats.presentation.base.view.BaseActivity;
 import com.ar4i.cats.presentation.breeds.view.BreedsFragment;
@@ -107,7 +105,7 @@ public class MainActivity extends BaseActivity implements MainView {
     private void showFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.main_container, fragment)
+                .replace(R.id.fl_container, fragment)
                 .commit();
     }
 

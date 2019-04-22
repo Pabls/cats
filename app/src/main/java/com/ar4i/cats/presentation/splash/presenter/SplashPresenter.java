@@ -17,15 +17,21 @@ public class SplashPresenter extends BasePresenter<SplashView> {
     private IImagesInteractor iImagesInteractor;
 
     // endregion-------------------------------------FIELDS-----------------------------------------
+
     public SplashPresenter(IImagesInteractor iImagesInteractor) {
         this.iImagesInteractor = iImagesInteractor;
     }
+
+    // region========================================extends BasePresenter<SplashView>==============
 
     @Override
     public void attachView(SplashView view) {
         super.attachView(view);
         initLogo();
     }
+
+    // endregion-------------------------------------extends BasePresenter<SplashView>--------------
+
 
     // region========================================PRIVATE METHODS================================
 

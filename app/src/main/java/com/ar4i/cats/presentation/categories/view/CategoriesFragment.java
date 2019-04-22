@@ -1,28 +1,72 @@
 package com.ar4i.cats.presentation.categories.view;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.ar4i.cats.R;
+import com.ar4i.cats.presentation.base.presenter.MvpPresenter;
+import com.ar4i.cats.presentation.base.view.BaseFragment;
+import com.ar4i.cats.presentation.categories.presenter.CategoriesPresenter;
 
-import androidx.fragment.app.Fragment;
+import java.util.List;
 
-public class CategoriesFragment extends Fragment {
+import javax.inject.Inject;
+
+import butterknife.BindView;
+
+public class CategoriesFragment extends BaseFragment implements CategoriesView {
 
     public static CategoriesFragment newInstance() {
         return new CategoriesFragment();
     }
 
+    // region========================================Fields=========================================
+
+    @Inject
+    CategoriesPresenter categoriesPresenter;
+
+    // endregion-------------------------------------Fields-----------------------------------------
+
+
+    // region========================================UI=============================================
+
+    @BindView(R.id.sp_categories)
+    Spinner spCategories;
+
+    // endregion-------------------------------------UI---------------------------------------------
+
+
+    // region========================================extends BaseFragment===========================
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected MvpPresenter getPresenter() {
+        return categoriesPresenter;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_categories, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_categories;
     }
+
+    @Override
+    protected void inject() {
+        getComponent().inject(this);
+    }
+
+    // endregion-------------------------------------extends BaseFragment---------------------------
+
+
+    // region========================================implements CategoriesView======================
+
+    @Override
+    public void setCategoryNamesToSpinner(List<String> names) {
+        String[] array = names.toArray(new String[names.size()]);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),
+                android.R.layout.simple_spinner_item, array);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCategories.setAdapter(adapter);
+    }
+
+    // endregion-------------------------------------implements CategoriesView----------------------
+
 }

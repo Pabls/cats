@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.ar4i.cats.app.di.components.ApplicationComponent;
 import com.ar4i.cats.app.di.components.DaggerApplicationComponent;
+import com.ar4i.cats.app.di.modules.ApplicationModule;
 import com.facebook.stetho.Stetho;
 
 import io.reactivex.plugins.RxJavaPlugins;
@@ -15,7 +16,6 @@ public class CatsApp extends Application {
 
     // region========================================Fields=========================================
 
-    private static CatsApp INSTANCE;
     private static ApplicationComponent APPLICATION_COMPONENT;
     private static ConnectivityManager CONNECTIVITY_MANAGER;
 
@@ -23,8 +23,6 @@ public class CatsApp extends Application {
 
 
     // region========================================Public Methods=================================
-
-    public static CatsApp getInstance() { return INSTANCE; }
 
     public static ApplicationComponent getApplicationComponent() {
         return APPLICATION_COMPONENT;
@@ -40,7 +38,6 @@ public class CatsApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        INSTANCE = this;
         initStetho();
         getConnectivityManager();
         createComponent();
@@ -58,13 +55,12 @@ public class CatsApp extends Application {
         initializerBuilder.enableDumpapp(Stetho.defaultDumperPluginsProvider(this));
         Stetho.Initializer initializer = initializerBuilder.build();
         Stetho.initialize(initializer);
-        RxJavaPlugins.setErrorHandler(throwable -> {
-            Log.d("ErrorHandler", throwable.getMessage());
-        });
     }
 
     private void createComponent() {
-        APPLICATION_COMPONENT = DaggerApplicationComponent.builder().build();
+        APPLICATION_COMPONENT = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
     }
 
     private void getConnectivityManager() {

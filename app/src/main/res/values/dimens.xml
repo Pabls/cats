@@ -23,5 +23,6 @@
     <dimen name="breeds_fragment.title">24sp</dimen>
     <dimen name="breeds_fragment.specification_size">24sp</dimen>
     <dimen name="breeds_fragment.country_flag_img.size">32dp</dimen>
+    <dimen name="loader_size">128dp</dimen>
 
 </resources>

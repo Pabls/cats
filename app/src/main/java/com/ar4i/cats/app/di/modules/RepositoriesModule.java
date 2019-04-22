@@ -1,7 +1,9 @@
 package com.ar4i.cats.app.di.modules;
 
+import com.ar4i.cats.app.CatsApp;
 import com.ar4i.cats.data.database.dao.BreedsDao;
 import com.ar4i.cats.data.mappers.BreedMapper;
+import com.ar4i.cats.data.mappers.CategoryMapper;
 import com.ar4i.cats.data.network.Api;
 import com.ar4i.cats.data.repositories.breeds.BreedsRepository;
 import com.ar4i.cats.data.repositories.categories.CategoriesRepository;
@@ -22,7 +24,8 @@ public class RepositoriesModule {
     }
 
     @Provides
-    public CategoriesRepository provideCategoriesRepository(Api api) { return new CategoriesRepository(api); }
+    public CategoriesRepository provideCategoriesRepository(Api api, CategoryMapper categoryMapper) {
+        return new CategoriesRepository(api, categoryMapper); }
 
     @Provides
     public FavoritesRepository provideFavoritesRepository(Api api) { return new FavoritesRepository(api); }
@@ -33,7 +36,7 @@ public class RepositoriesModule {
     }
 
     @Provides
-    public SystemRepository provideSystemRepository() { return new SystemRepository(); }
+    public SystemRepository provideSystemRepository(CatsApp application) { return new SystemRepository(application); }
 
     @Provides
     public VotesRepository provideVotesRepository(Api api) {
