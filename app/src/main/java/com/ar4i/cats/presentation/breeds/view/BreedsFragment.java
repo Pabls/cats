@@ -172,6 +172,7 @@ public class BreedsFragment extends BaseFragment implements BreedsView {
     public void showBreedImg(String imgUrl) {
         Glide.with(this)
                 .load(imgUrl)
+                .centerCrop()
                 .placeholder(R.drawable.ic_cat)
                 .error(R.drawable.ic_cat)
                 .into(imgBreedPhoto);
