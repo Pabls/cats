@@ -4,9 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.ar4i.cats.data.database.tables.Breeds;
-
 import androidx.annotation.Nullable;
+
+import com.ar4i.cats.data.database.tables.Breeds;
+import com.ar4i.cats.data.database.tables.Categories;
 
 public class DBhelper extends SQLiteOpenHelper {
 
@@ -26,7 +27,15 @@ public class DBhelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(Breeds.getTableCreationCommand());
+        db.beginTransaction();
+        try {
+            db.execSQL(Breeds.getTableCreationCommand());
+            db.execSQL(Categories.getTableCreationCommand());
+
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
     }
 
     @Override

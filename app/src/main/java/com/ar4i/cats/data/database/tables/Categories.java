@@ -2,13 +2,12 @@ package com.ar4i.cats.data.database.tables;
 
 import android.content.ContentValues;
 
-public final class Breeds {
-    private Breeds() {
+public final class Categories {
+    private Categories() {
     }
-
     // region========================================FIELDS=========================================
 
-    private static final String TABLE_NAME = "breeds";
+    private static final String TABLE_NAME = "categories";
 
     private static final String ID = "id";
     private static final String NAME = "name";
@@ -16,7 +15,7 @@ public final class Breeds {
     private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS %s " +
             "( %s TEXT PRIMARY KEY, %s TEXT);";
 
-    private static final String GET_ALL_BREEDS = "SELECT * FROM %s";
+    private static final String GET_ALL_CATEGORIES = "SELECT * FROM %s";
 
     // endregion-------------------------------------FIELDS-----------------------------------------
 
@@ -33,8 +32,8 @@ public final class Breeds {
         return String.format(CREATE_TABLE, TABLE_NAME, ID, NAME);
     }
 
-    public static String getBreedsSelectionCommand() {
-        return String.format(GET_ALL_BREEDS, TABLE_NAME);
+    public static String getCategoriesSelectionCommand() {
+        return String.format(GET_ALL_CATEGORIES, TABLE_NAME);
     }
 
     public static ContentValues toContentValues(String id, String name) {

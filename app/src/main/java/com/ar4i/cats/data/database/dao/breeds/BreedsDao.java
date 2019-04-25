@@ -1,4 +1,4 @@
-package com.ar4i.cats.data.database.dao;
+package com.ar4i.cats.data.database.dao.breeds;
 
 import android.content.ContentValues;
 import android.database.Cursor;

@@ -1,6 +1,6 @@
 package com.ar4i.cats.data.repositories.breeds;
 
-import com.ar4i.cats.data.database.dao.IBreedsDao;
+import com.ar4i.cats.data.database.dao.breeds.IBreedsDao;
 import com.ar4i.cats.data.database.dto.BreedDto;
 import com.ar4i.cats.data.mappers.IVmMapper;
 import com.ar4i.cats.data.models.PartialBreedModel;
@@ -49,5 +49,4 @@ public class BreedsRepository implements IBreedsRepository {
     }
 
     //-------------------------------------------end implements IBreedsRepository-------------------
-
 }

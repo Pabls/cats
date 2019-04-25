@@ -1,7 +1,7 @@
 package com.ar4i.cats.app.di.modules;
 
 import com.ar4i.cats.app.CatsApp;
-import com.ar4i.cats.data.database.dao.BreedsDao;
+import com.ar4i.cats.data.database.dao.breeds.BreedsDao;
 import com.ar4i.cats.data.mappers.BreedMapper;
 import com.ar4i.cats.data.mappers.CategoryMapper;
 import com.ar4i.cats.data.mappers.ImageMapper;
