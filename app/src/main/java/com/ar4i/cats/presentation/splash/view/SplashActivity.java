@@ -1,11 +1,13 @@
 package com.ar4i.cats.presentation.splash.view;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.ar4i.cats.R;
-import com.ar4i.cats.app.CatsApp;
-import com.ar4i.cats.presentation.base.presenter.BasePresenter;
 import com.ar4i.cats.presentation.base.presenter.MvpPresenter;
 import com.ar4i.cats.presentation.base.view.BaseActivity;
 import com.ar4i.cats.presentation.main.view.MainActivity;
@@ -14,7 +16,6 @@ import com.bumptech.glide.Glide;
 
 import javax.inject.Inject;
 
-import androidx.annotation.Nullable;
 import butterknife.BindView;
 
 
@@ -24,6 +25,10 @@ public class SplashActivity extends BaseActivity implements SplashView {
 
     @BindView(R.id.img_logo)
     ImageView imgLogo;
+
+    @BindView(R.id.tv_no_network)
+    TextView tvNoNetwork;
+
 
     // endregion-------------------------------------UI---------------------------------------------
 
@@ -73,6 +78,12 @@ public class SplashActivity extends BaseActivity implements SplashView {
                 .circleCrop()
                 .error(R.drawable.ic_cat)
                 .into(imgLogo);
+    }
+
+    @Override
+    public void showNoNetworkMessage(boolean show) {
+        tvNoNetwork.setVisibility(show ? View.VISIBLE : View.GONE);
+        imgLogo.setImageResource(show ? R.drawable.ic_sad_cat : R.drawable.ic_cat);
     }
 
     //-------------------------------------------end extends BaseActivity---------------------------

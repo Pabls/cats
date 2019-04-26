@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Photo-Cat</string>
 
+    <string name="common.no_network">Check your network connection status</string>
+
     <string name="start_activity.text.footer">
         The application works with the service «The Cat API» \n https://thecatapi.com
     </string>

@@ -1,6 +1,7 @@
 package com.ar4i.cats.presentation.splash.presenter;
 
 import com.ar4i.cats.domain.interactors.images.IImagesInteractor;
+import com.ar4i.cats.domain.interactors.system.ISystemInteractor;
 import com.ar4i.cats.presentation.base.presenter.BasePresenter;
 import com.ar4i.cats.presentation.splash.view.SplashView;
 
@@ -15,11 +16,13 @@ public class SplashPresenter extends BasePresenter<SplashView> {
     // region========================================FIELDS=========================================
 
     private IImagesInteractor iImagesInteractor;
+    ISystemInteractor iSystemInteractor;
 
     // endregion-------------------------------------FIELDS-----------------------------------------
 
-    public SplashPresenter(IImagesInteractor iImagesInteractor) {
+    public SplashPresenter(IImagesInteractor iImagesInteractor, ISystemInteractor iSystemInteractor) {
         this.iImagesInteractor = iImagesInteractor;
+        this.iSystemInteractor = iSystemInteractor;
     }
 
     // region========================================extends BasePresenter<SplashView>==============
@@ -27,6 +30,7 @@ public class SplashPresenter extends BasePresenter<SplashView> {
     @Override
     public void attachView(SplashView view) {
         super.attachView(view);
+        checkNetworkState();
         initLogo();
     }
 
@@ -35,6 +39,21 @@ public class SplashPresenter extends BasePresenter<SplashView> {
 
     // region========================================PRIVATE METHODS================================
 
+    private void checkNetworkState() {
+        track(iSystemInteractor.hasNetworkConnection()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(isConnected -> {
+                    if (isConnected) {
+
+                    } else {
+
+                    }
+                }, error -> {
+                    getMvpView().showMessage(error.getMessage());
+                }));
+    }
+
     private void initLogo() {
         track(this.iImagesInteractor.getRandomImageUrl()
                 .subscribeOn(Schedulers.io())
@@ -42,10 +61,9 @@ public class SplashPresenter extends BasePresenter<SplashView> {
                 .subscribe(url -> {
                     if (url != null && !url.isEmpty()) {
                         getMvpView().setLogoImage(url);
-                        navigateToApp();
                     }
                 }, error -> {
-                    navigateToApp();
+                    getMvpView().showMessage(error.getMessage());
                 }));
     }
 

@@ -3,6 +3,7 @@ package com.ar4i.cats.app.di.modules;
 import com.ar4i.cats.domain.interactors.breeds.BreedsInteractor;
 import com.ar4i.cats.domain.interactors.categories.CategoriesInteractor;
 import com.ar4i.cats.domain.interactors.images.ImagesInteractor;
+import com.ar4i.cats.domain.interactors.system.SystemInteractor;
 import com.ar4i.cats.presentation.breeds.presenter.BreedsPresenter;
 import com.ar4i.cats.presentation.categories.presenter.CategoriesPresenter;
 import com.ar4i.cats.presentation.categories.view.CategoriesFragment;
@@ -16,8 +17,8 @@ import dagger.Provides;
 public class PresentationModule {
 
     @Provides
-    SplashPresenter provideSplashPresenter(ImagesInteractor imagesInteractor) {
-        return new SplashPresenter(imagesInteractor);
+    SplashPresenter provideSplashPresenter(ImagesInteractor imagesInteractor, SystemInteractor systemInteractor) {
+        return new SplashPresenter(imagesInteractor, systemInteractor);
     }
 
     @Provides
